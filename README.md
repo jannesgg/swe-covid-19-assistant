@@ -6,4 +6,4 @@ These encodings are used to find the most similar questions from a database of q
 
 The aim of this project is to promote access to important COVID-19 recommendations in multiple languages that reflect Sweden's linguistic diversity.
 
-Visit http://99d05105.ngrok.io/ to try a demo.
+Visit http://c19swe.info/ to try a demo.
