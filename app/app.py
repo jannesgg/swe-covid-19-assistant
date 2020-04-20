@@ -91,7 +91,6 @@ def translate_answer(answer, lang):
     t_answer = insert_links(t_answer, links, lang)
     return t_answer, updated, source_link
 
-
 @app.route("/")
 def my_form():
     return render_template("hello.html")
@@ -107,6 +106,7 @@ def query_check():
     query_text = request.form["text"]
     query = model([query_text])
     query_mat = np.full((len(df), np.array(embedding_mat).shape[1]), query)
+
     cosim_matrix = 1 - distance.cdist(
         query_mat, embedding_mat, "cosine").diagonal()
 
