@@ -35,41 +35,49 @@
 {% if query %}
 <div class="container">
     <div class="alert alert-dark" id="query_div">
-        <h5>Current query</h5>
-        Query: {{ query }}<br />
+        <h5>Your current query: {{ query }}</h5>
         Language: {{ language }}
     </div>
 </div>
 {% endif %}
 
 <div class="container" id="results_div">
-<table border = 0>
-            <tr>
+    <table border = 0>
+        <tr>
             <td>
                 <br />
                 <br />
             </td>
-            </tr>
-         {% for translation in translations %}
-           <div class="card border-success mb-3">
-            <h5 class="card-header">{{ loop.index }}</h5>
-            <div class="card-body">
-              <p class="card-text">{{ translation.text }}</p>
-                {% if translation.url %}
-                <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/fragor-och-svar/{{ translation.url }}" class="btn btn-primary">
-                  Go to source
-                </a>
-                {% endif %}
+        </tr>
+        {% for translation in translations %}
+        <div class="card border-success mb-3">
+            <div class="card-header">
+                {{ loop.index }}
             </div>
-          </div>
-            <tr>
+            <div class="card-body">
+                <h5 class="card-title">{{ translation.question }}</h5>
+                <p class="card-text">{{ translation.answer|safe }}</p>
+            </div>
+            <div class="card-footer text-muted text-center">
+                <p class="float-left">Last updated: {{ translation.updated
+                    }}</p>
+                {% if translation.source_link %}
+                    <a
+                            href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/fragor-och-svar/{{ translation.source_link.url }}" class="btn btn-outline-dark btn-sm float-right">
+                        {{ translation.source_link.label }}
+                    </a>
+                {% endif %}
+
+            </div>
+        </div>
+        <tr>
             <td>
                 <br />
                 <br />
             </td>
-            </tr>
-         {% endfor %}
-      </table>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 
 <div class="container" id="footer">
