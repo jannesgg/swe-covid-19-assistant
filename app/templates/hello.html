@@ -1,8 +1,8 @@
 
 <title>COVID-19 Assistant</title>
-        	 	<link rel="stylesheet" media="screen" href="static/bootstrap.min.css">
-        	 	<link rel="stylesheet" href="static/bootstrap-theme.min.css">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" media="screen" href="static/bootstrap.min.css">
+<link rel="stylesheet" href="static/bootstrap-theme.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <div class="container" style="padding-top: 50px">
     <center><img src="/static/logo_corona.png" width="40%"></center>
@@ -32,6 +32,15 @@
 </form>
 </div>
 
+{% if query %}
+<div class="container">
+    <div class="alert alert-dark" id="query_div">
+        <h5>Current query</h5>
+        Query: {{ query }}<br />
+        Language: {{ language }}
+    </div>
+</div>
+{% endif %}
 
 <div class="container" id="results_div">
 <table border = 0>
@@ -41,12 +50,16 @@
                 <br />
             </td>
             </tr>
-         {% for i in range(0,(results|length)) %}
+         {% for translation in translations %}
            <div class="card border-success mb-3">
-            <h5 class="card-header">{{ i+1 }}</h5>
+            <h5 class="card-header">{{ loop.index }}</h5>
             <div class="card-body">
-              <p class="card-text">{{ results[i][0].rsplit('[', 1)[0].capitalize() }}</p>
-              <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/fragor-och-svar/" class="btn btn-primary">{{ results[i][0].rsplit('[', 1)[1].capitalize() }}</a>
+              <p class="card-text">{{ translation.text }}</p>
+                {% if translation.url %}
+                <a href="https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/fragor-och-svar/{{ translation.url }}" class="btn btn-primary">
+                  Go to source
+                </a>
+                {% endif %}
             </div>
           </div>
             <tr>
