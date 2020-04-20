@@ -5,6 +5,7 @@ import html2text
 from twisted.internet import reactor
 from scrapy.crawler import CrawlerRunner
 
+
 class FAQSpider(scrapy.Spider):
     name = "faqs"
     start_urls = [
