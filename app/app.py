@@ -28,6 +28,9 @@ model = hub.load(
     "https://tfhub.dev/google/universal-sentence-encoder-multilingual/3")
 
 df = pd.read_csv("../data/corona_data.csv")
+
+# Use English embedding instead of Swedish
+df['question'] = df['question'].apply(lambda x: translator.translate(x, dest='en').text)
 embedding_mat = model(list(df.question.values)).numpy()
 # embedding_mat = model.encode(list(df.question.values))
 
