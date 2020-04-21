@@ -37,7 +37,7 @@ embedding_mat = model(list(df.question.values)).numpy()
 UPDATED_RE = re.compile(r"(\s\w+: (?P<updated>\d\d\d\d-\d\d-\d\d\s\d\d:\d\d))")
 LINK_RE = re.compile(r"(\s\[(?P<label>.*?)\]\((?P<url>.+?)\))")
 
-LANGUAGES = ["ar", "en", "es", "fr", "de", "nl"]
+LANGUAGES = ["ar", "en", "es", "fr", "de", "nl", "zh-cn", "ja", "ko", "pl", "pt", "th", "tr", "ru"]
 
 
 def prepare_source_link(text, links, lang):
