@@ -1,6 +1,7 @@
 import json, os
 import scrapy
 import html2text
+import pandas as pd
 
 from twisted.internet import reactor
 from scrapy.crawler import CrawlerRunner
@@ -31,7 +32,8 @@ class FAQSpider(scrapy.Spider):
 
         with open(os.path.join('output', filename), 'w') as f:
             json.dump(faq_list, f)
-
+	
+	pd.read_json(os.path.join('output', filename)).to_csv(os.path.join('output', filename.replace('.json', '.csv'))
 
 if __name__ == "__main__":
     runner = CrawlerRunner()
