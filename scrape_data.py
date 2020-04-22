@@ -26,14 +26,14 @@ class FAQSpider(scrapy.Spider):
                      'source': response.url}
                     for q, a in zip(questions, answers)]
 
-        filename = 'faq-info-coronavirus.json'
+        filename = 'corona_data.json'
        
-        if not os.path.isdir('output'): os.mkdir('output')
+        if not os.path.isdir('data'): os.mkdir('output')
 
-        with open(os.path.join('output', filename), 'w') as f:
+        with open(os.path.join('data', filename), 'w') as f:
             json.dump(faq_list, f)
 	
-	pd.read_json(os.path.join('output', filename)).to_csv(os.path.join('output', filename.replace('.json', '.csv'))
+	pd.read_json(os.path.join('data', filename)).to_csv(os.path.join('output', filename.replace('.json', '.csv'))
 
 if __name__ == "__main__":
     runner = CrawlerRunner()
