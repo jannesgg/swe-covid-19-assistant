@@ -1,6 +1,6 @@
 flask-ngrok
 gunicorn==19.0.0
-setuptools==41.0.1
+setuptools==65.5.1
 pandas==0.24.1
 Flask==1.0.2
 googletrans==2.4.0
